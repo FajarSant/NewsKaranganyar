@@ -1,18 +1,18 @@
 {
   "version": 2,
   "builds": [
-    { "src": "/api/HotNews", "use": "@vercel/node" },
-    { "src": "/api/ListNews", "use": "@vercel/node" },
-    { "src": "/api/Olahraga", "use": "@vercel/node" },
-    { "src": "/api/Pertanian", "use": "@vercel/node" },
-    { "src": "/api/Pendidikan", "use": "@vercel/node" }
+    { "src": "api/controllers/HotNewsControlllers.js", "use": "@vercel/node" },
+    { "src": "api/controllers/ListNewsControlllers.js", "use": "@vercel/node" },
+    { "src": "api/controllers/PendidikanControlllers.js", "use": "@vercel/node" },
+    { "src": "api/controllers/OlahragaControlllers.js", "use": "@vercel/node" },
+    { "src": "api/controllers/PertanianControlllers.js", "use": "@vercel/node" }
   ],
   "routes": [
-    { "src": "/api/HotNews", "dest": "PertanianControllers.js" },
-    { "src": "/api/ListNews", "dest": "ListNewsControllers.js" },
-    { "src": "/api/Olahraga", "dest": "OlahragaControllers.js" },
-    { "src": "/api/Pendidikan", "dest": "PendidikanControllers.js" },
-    { "src": "/api/Pertanian", "dest": "PertanianControllers.js" },
+    { "src": "/api/HotNews", "dest": "api/controllers/HotNewsControlllers.js" },
+    { "src": "/api/ListNews", "dest": "api/controllers/ListNewsControlllers.js" },
+    { "src": "/api/Pendidikan", "dest": "api/controllers/PendidikanControlllers.js" },
+    { "src": "/api/Olahraga", "dest": "api/controllers/OlahragaControlllers.js" },
+    { "src": "/api/Pertanian", "dest": "api/controllers/PertanianControlllers.js" },
     { "src": "/(.*)", "dest": "api/index.js" }
   ],
   "env": {
