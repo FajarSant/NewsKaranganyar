@@ -10,7 +10,7 @@ function HotNews() {
   useEffect(() => {
     // Membuat permintaan Axios ke server backend Anda
     axios
-      .get("http://localhost:4000/HotNews") // Ganti dengan URL server backend Anda
+      .get("https://news-karanganyar-d40wsugmp-fajarsant.vercel.app/api/HotNewsControllers") // Ganti dengan URL server backend Anda
       .then((response) => {
         setBerita(response.data);
       })
