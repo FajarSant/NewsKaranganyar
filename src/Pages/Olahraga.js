@@ -7,7 +7,7 @@ function Pendidikan() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:4000/Sport") // Ganti URL dengan URL server backend Anda
+      .get("https://news-karanganyar.vercel.app/api/OlahragaControllers") // Ganti URL dengan URL server backend Anda
       .then((response) => {
         setBerita(response.data);
       })
