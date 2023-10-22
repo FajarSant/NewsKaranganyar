@@ -1,21 +1,12 @@
-const express = require("express");
-const app = express();
-const port = process.env.PORT || 4000;
+// Servers/index.js
+module.exports = (req, res) => {
+  const responseData = {
+    message: "Selamat datang di serverless function!",
+    requestHeaders: req.headers,
+    requestMethod: req.method,
+    requestPath: req.url,
+  };
 
-// Middleware untuk mengizinkan permintaan lintas domain (CORS)
-app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
-  next();
-});
-
-
-// Rute akar
-app.get("/", (req, res) => {
-  res.send("Selamat datang di server backend.");
-});
-
-app.listen(port, () => {
-  console.log(`Server backend is running on port ${port}`);
-});
+  res.setHeader("Content-Type", "application/json");
+  res.status(200).send(JSON.stringify(responseData, null, 2));
+};
