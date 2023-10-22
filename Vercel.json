@@ -1,24 +1,19 @@
 {
   "version": 2,
   "builds": [
-    { "src": "package.json", "use": "@vercel/static-build" },
-    {
-      "src": "public/**",
-      "use": "@vercel/static"
-    },
-    {
-      "src": "src/api/**",
-      "use": "@vercel/node"
-    },
-    {
-      "src": "index.js",
-      "use": "@vercel/node"
-    }
+    { "src": "api/HotNews.cjs", "use": "@vercel/node" },
+    { "src": "api/ListNews.cjs", "use": "@vercel/node" },
+    { "src": "api/Berita.cjs", "use": "@vercel/node" }
   ],
   "routes": [
-    { "handle": "filesystem" },
-    { "src": "/api/endpoint", "dest": "Servers/index.cjs" },
-    { "src": "/(.*)", "dest": "public/$1" },
-    { "src": "/Servers", "dest": "index.cjs" }  
-  ]
+    { "src": "/api/hotnews", "dest": "/Servers/HotNewsControllers.js" },
+    { "src": "/api/ListNews", "dest": "/Servers/ListNewsControllers.js" },
+    { "src": "/api/Olahraga", "dest": "/Servers/OlahragaControllers.js" },
+    { "src": "/api/Pendidikan", "dest": "/Servers/PendidikanControllers.js" },
+    { "src": "/api/Pertanian", "dest": "/Servers/PertanianControllers.js" },
+    { "src": "/(.*)", "dest": "Servers/index.cjs" }
+  ],
+  "env": {
+    "NODE_ENV": "production"
+  }
 }
