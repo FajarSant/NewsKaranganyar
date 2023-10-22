@@ -2,9 +2,11 @@ const axios = require("axios");
 const cheerio = require("cheerio");
 const Sentiment = require("sentiment");
 
-async function HotNewsControllers(res, url) {
+module.exports = async (req, res) => {
   try {
+    const url = "https://www.detik.com/tag/bupati-karanganyar?tag_from=karanganyar";
     const response = await axios.get(url);
+
     if (response.status === 200) {
       const html = response.data;
       const $ = cheerio.load(html);
@@ -37,23 +39,18 @@ async function HotNewsControllers(res, url) {
       });
 
       if (beritaData.length > 0) {
-        res.json(beritaData);
+        res.status(200).json(beritaData);
       } else {
         res.status(404).json({ error: "Tidak ada berita yang ditemukan." });
       }
     } else {
       // Tangani kesalahan jika respons bukan 200 OK
-      res
-        .status(response.status)
-        .json({
-          error:
-            "Gagal mengambil data berita. Halaman tidak ditemukan atau sumber berita tidak tersedia.",
-        });
+      res.status(500).json({
+        error: "Gagal mengambil data berita. Halaman tidak ditemukan atau sumber berita tidak tersedia.",
+      });
     }
   } catch (error) {
     console.error("Gagal mengambil data berita:", error);
     res.status(500).json({ error: "Terjadi kesalahan. " + error.message });
   }
-}
-
-module.exports = HotNewsControllers;
+};
