@@ -1,12 +1,7 @@
-// Servers/index.js
-module.exports = (req, res) => {
-  const responseData = {
-    message: "Selamat datang di serverless function!",
-    requestHeaders: req.headers,
-    requestMethod: req.method,
-    requestPath: req.url,
-  };
+const express = require('express');
+const app = express();
 
-  res.setHeader("Content-Type", "application/json");
-  res.status(200).send(JSON.stringify(responseData, null, 2));
-};
+
+app.listen(3000, () => {
+  console.log('Server is running on port 3000');
+});
