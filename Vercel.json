@@ -17,8 +17,8 @@
   ],
   "routes": [
     { "handle": "filesystem" },
-    { "src": "/api/endpoint", "dest": "src/api/endpoint.js" },
+    { "src": "/api/endpoint", "dest": "sr/Controllers/" },
     { "src": "/(.*)", "dest": "public/$1" },
-    { "src": "/news", "dest": "index.js" }  
+    { "src": "/Servers", "dest": "index.cjs" }  
   ]
 }
