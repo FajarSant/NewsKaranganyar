@@ -1,11 +1,11 @@
 const express = require("express");
 const app = express();
 const port = process.env.PORT || 4000;
-const HotNewsControllers = require("./src/Controllers/HotNewsControllers"); // Pastikan path ke HotNewsControllers sesuai
-const ListNewsControllers = require("./src/Controllers/ListNewsControllers"); // Pastikan path ke HotNewsControllers sesuai
-const OlahragaControllers = require("./src/Controllers/ListNewsControllers"); // Pastikan path ke HotNewsControllers sesuai
-const PendidikanControllers = require("./src/Controllers/ListNewsControllers"); // Pastikan path ke HotNewsControllers sesuai
-const PertanianControllers = require("./src/Controllers/ListNewsControllers"); // Pastikan path ke HotNewsControllers sesuai
+const HotNewsControllers = require("./Controllers/HotNewsControllers"); // Pastikan path ke HotNewsControllers sesuai
+const ListNewsControllers = require("./Controllers/ListNewsControllers"); // Pastikan path ke HotNewsControllers sesuai
+const OlahragaControllers = require("./Controllers/OlahragaControllers"); // Pastikan path ke HotNewsControllers sesuai
+const PendidikanControllers = require("./Controllers/PendidikanControllers"); // Pastikan path ke HotNewsControllers sesuai
+const PertanianControllers = require("./Controllers/PertanianControllers"); // Pastikan path ke HotNewsControllers sesuai
 
 // Middleware untuk mengizinkan permintaan lintas domain (CORS)
 app.use((req, res, next) => {
