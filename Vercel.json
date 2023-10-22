@@ -8,11 +8,11 @@
     { "src": "/api/Pendidikan", "use": "@vercel/node" }
   ],
   "routes": [
-    { "src": "/api/HotNews", "dest": "api/PertanianControllers.js" },
-    { "src": "/api/ListNews", "dest": "api/ListNewsControllers.js" },
-    { "src": "/api/Olahraga", "dest": "api/OlahragaControllers.js" },
-    { "src": "/api/Pendidikan", "dest": "api/PendidikanControllers.js" },
-    { "src": "/api/Pertanian", "dest": "api/PertanianControllers.js" },
+    { "src": "/api/HotNews", "dest": "PertanianControllers.js" },
+    { "src": "/api/ListNews", "dest": "ListNewsControllers.js" },
+    { "src": "/api/Olahraga", "dest": "OlahragaControllers.js" },
+    { "src": "/api/Pendidikan", "dest": "PendidikanControllers.js" },
+    { "src": "/api/Pertanian", "dest": "PertanianControllers.js" },
     { "src": "/(.*)", "dest": "api/index.js" }
   ],
   "env": {
