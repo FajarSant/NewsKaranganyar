@@ -2,7 +2,8 @@ const axios = require("axios");
 const cheerio = require("cheerio");
 const Sentiment = require("sentiment");
 
-const PendidikanControllers = async (req, res) => {
+// Kode untuk serverless function
+module.exports = async (req, res) => {
   try {
     const url = "https://www.solopos.com/tag/sarana-olahraga-karanganyar";
 
@@ -40,13 +41,9 @@ const PendidikanControllers = async (req, res) => {
       beritaData.push(berita);
     });
 
-    res.json(beritaData);
+    res.status(200).json(beritaData); // Mengubah status response menjadi 200
   } catch (error) {
     console.error("Gagal mengambil halaman web:", error);
     res.status(500).json({ error: "Terjadi kesalahan" });
   }
-};
-
-module.exports = {
-  PendidikanControllers,
 };

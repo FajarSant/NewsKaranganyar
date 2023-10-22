@@ -2,9 +2,11 @@ const axios = require("axios");
 const cheerio = require("cheerio");
 const Sentiment = require("sentiment");
 
-async function HotNewsControllers(res, url) {
+module.exports = async (req, res) => {
   try {
-    // Mengambil data dari URL yang diberikan
+    // URL bisa ditentukan di lingkungan Vercel atau dari input request, jika dibutuhkan
+    const url = "https://soloraya.solopos.com/karanganyar"; // Gantilah dengan URL yang sesuai
+
     const response = await axios.get(url);
 
     if (response.status === 200) {
@@ -36,6 +38,7 @@ async function HotNewsControllers(res, url) {
         });
       });
 
+      // Kirim respon dalam bentuk JSON
       res.json(newsList);
     } else {
       res.status(500).json({ error: "Gagal melakukan GET request" });
@@ -44,6 +47,4 @@ async function HotNewsControllers(res, url) {
     console.error("Terjadi kesalahan:", error);
     res.status(500).json({ error: "Terjadi kesalahan" });
   }
-}
-
-module.exports = HotNewsControllers;
+};
