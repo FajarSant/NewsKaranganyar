@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "../CSS/Font.css";
 
-function Pendidikan() {
+function Olahraga() {
   const [berita, setBerita] = useState([]);
 
   useEffect(() => {
@@ -96,4 +96,4 @@ function Pendidikan() {
   );
 }
 
-export default Pendidikan;
+export default Olahraga;
