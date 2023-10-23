@@ -7,7 +7,7 @@ function Pertanian() {
 
   useEffect(() => {
     axios
-      .get("https://news-karanganyar-dz1a.vercel.app/api/PertanianControllers") // Ganti URL dengan URL server backend Anda
+      .get("https://news-karanganyar.vercel.app/api/PertanianControllers") // Ganti URL dengan URL server backend Anda
       .then((response) => {
         setBerita(response.data);
       })
