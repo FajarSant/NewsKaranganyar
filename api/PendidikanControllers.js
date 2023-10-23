@@ -2,48 +2,49 @@ const axios = require("axios");
 const cheerio = require("cheerio");
 const Sentiment = require("sentiment");
 
-// Kode untuk serverless function
 module.exports = async (req, res) => {
   try {
-    const url = "https://www.solopos.com/tag/pendidikan-karanganyar";
+    // URL bisa ditentukan di lingkungan Vercel atau dari input request, jika dibutuhkan
+    const url = "https://www.solopos.com/tag/pendidikan-karanganyar"; // Gantilah dengan URL yang sesuai
 
     const response = await axios.get(url);
-    const html = response.data;
-    const $ = cheerio.load(html);
 
-    const breakingNewsItems = $(".sp-list-breaking .item");
+    if (response.status === 200) {
+      const $ = cheerio.load(response.data);
+      const newsList = [];
 
-    const beritaData = [];
+      $(".item").each((index, element) => {
+        const imgSrc = $(element).find(".img img").attr("src");
+        const category = $(element).find(".news-cat").text();
+        const title = $(element).find(".title a").text();
+        const link = $(element).find(".title a").attr("href");
+        const description = $(element).find(".text").text();
+        const date = $(element).find(".date").text().trim();
+        const author = $(element).find(".author").text().trim();
 
-    breakingNewsItems.each((index, element) => {
-      const imgSrc = $(element).find(".img img").attr("src");
-      const category = $(element).find(".news-cat").text();
-      const title = $(element).find(".title a").text();
-      const link = $(element).find(".title a").attr("href");
-      const description = $(element).find(".text").text();
-      const date = $(element).find(".date ").text();
-      const author = $(element).find(".author").text();
+        // Analisis sentimen pada deskripsi berita
+        const sentimentAnalysis = new Sentiment();
+        const sentimentResult = sentimentAnalysis.analyze(description);
 
-      const sentimentAnalysis = new Sentiment();
-      const sentimentResult = sentimentAnalysis.analyze(description);
+        newsList.push({
+          imgSrc,
+          category,
+          title,
+          link,
+          description,
+          date,
+          author,
+          sentiment: sentimentResult,
+        });
+      });
 
-      const berita = {
-        imgSrc,
-        category,
-        title,
-        link,
-        description,
-        date,
-        author,
-        sentiment: sentimentResult,
-      };
-
-      beritaData.push(berita);
-    });
-
-    res.status(200).json(beritaData); // Mengubah status response menjadi 200
+      // Kirim respon dalam bentuk JSON
+      res.json(newsList);
+    } else {
+      res.status(500).json({ error: "Gagal melakukan GET request" });
+    }
   } catch (error) {
-    console.error("Gagal mengambil halaman web:", error);
+    console.error("Terjadi kesalahan:", error);
     res.status(500).json({ error: "Terjadi kesalahan" });
   }
 };
